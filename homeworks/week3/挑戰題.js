@@ -3,8 +3,7 @@ function mazeSolution(maze) {
   const now = ['0,0'];
   const past = [];
   for (let j = 0; j < H * W; j += 1) {
-    const il = now.length;
-    for (let i = 0; i < il; i += 1) {
+    for (let i = 0; i < now.length; i += 1) {
       const [x, y] = now[0].split(',').map(Number);
       const direction = [[x + 1, y], [x - 1, y], [x, y + 1], [y, y - 1]];
       for (let k = 0; k < direction.length; k += 1) {
