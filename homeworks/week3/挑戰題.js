@@ -1,40 +1,24 @@
-function mazeSolution(maze, H, W) {
-  let step = H * W;
+function mazeSolution(maze) {
+  const [H, W] = [maze.length, maze[0].length];
   const now = ['0,0'];
   const past = [];
-  const [ex, ey] = [W - 1, H - 1];
-  for (let j = 0; j < step; j += 1) {
+  for (let j = 0; j < H * W; j += 1) {
     const il = now.length;
     for (let i = 0; i < il; i += 1) {
       const [x, y] = now[0].split(',').map(Number);
-      let [tx, ty] = [0, 0];
-      tx = x + 1;
-      ty = y;
-      if ((tx < W) && (tx > -1) && (ty < H) && (ty > -1) && (maze[ty][tx] !== '#') && (past.indexOf(`${tx},${ty}`) === -1)) {
-        now.push(`${tx},${ty}`);
-      }
-      tx = x - 1;
-      ty = y;
-      if ((tx < W) && (tx > -1) && (ty < H) && (ty > -1) && (maze[ty][tx] !== '#') && (past.indexOf(`${tx},${ty}`) === -1)) {
-        now.push(`${tx},${ty}`);
-      }
-      tx = x;
-      ty = y + 1;
-      if ((tx < W) && (tx > -1) && (ty < H) && (ty > -1) && (maze[ty][tx] !== '#') && (past.indexOf(`${tx},${ty}`) === -1)) {
-        now.push(`${tx},${ty}`);
-      }
-      tx = x;
-      ty = y - 1;
-      if ((tx < W) && (tx > -1) && (ty < H) && (ty > -1) && (maze[ty][tx] !== '#') && (past.indexOf(`${tx},${ty}`) === -1)) {
-        now.push(`${tx},${ty}`);
+      const direction = [[x + 1, y], [x - 1, y], [x, y + 1], [y, y - 1]];
+      for (let k = 0; k < direction.length; k += 1) {
+        const [m, n] = direction[k];
+        if ((m < W) && (m > -1) && (n < H) && (n > -1) && (maze[n][m] !== '#') && (past.indexOf(`${m},${n}`) === -1)) {
+          now.push(`${m},${n}`);
+        }
       }
       past.push(now.shift());
     }
-    if (now.indexOf(`${ex},${ey}`) !== -1) {
-      step = j + 1;
-      console.log(step);
+    if (now.indexOf(`${W - 1},${H - 1}`) !== -1) {
+      console.log(j + 1);
     }
   }
 }
 
-mazeSolution([['.', '#', '.'], ['.', '.', '.'], ['#', '.', '.']], 3, 3);
+mazeSolution([['.', '#', '.'], ['.', '.', '.'], ['#', '.', '.']]);
