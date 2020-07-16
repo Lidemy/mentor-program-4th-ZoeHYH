@@ -1,13 +1,14 @@
 function join(arr, concatStr) {
-  let str = ''
-  for (let i=0; i<arr.length; i++) str += (arr[i] + concatStr) 
-  return str
+  let result = arr[0];
+  if (arr === []) return '';
+  for (let i = 1; i < arr.length; i += 1) result += concatStr + arr[i];
+  return result;
 }
 
 function repeat(str, times) {
-  let newStr = ''
-  for (let i=0; i<times; i++) newStr += str
-  return newStr
+  let result = '';
+  for (let i = 0; i < times; i += 1) result += str;
+  return result;
 }
 
 console.log(join(['a'], '!'));
