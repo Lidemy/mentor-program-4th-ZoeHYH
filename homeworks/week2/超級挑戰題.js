@@ -1,14 +1,33 @@
-function add(a,b) {
-  let m = a.toString(2).split('')
-  let n = b.toString(2).split('')
-  let sL = (a >= b) ? m.length +1 : n.length +1
-  let s = []
-  let c = '0'
-  for(let i = 1; i < sL+1; i++) {
-    let t1 = (m.length-i < 0) ? 0 : m[m.length-i]
-    let t2 = (n.length-i < 0) ? 0 : n[n.length-i]
-    s[sL-i] = (t1 ^ t2) ^ c
-    c = ((t1 ^ t2) & c) | (t1 & t2)
-  }
-  return parseInt(s.join(''),2)
+/* eslint-disable no-bitwise */
+
+function halfAdder(a, b) {
+  const sum = a ^ b;
+  const carry = a & b;
+  return [sum, carry];
 }
+
+function fullAdder(a, b, c) {
+  const [sum1, carry1] = halfAdder(a, b);
+  const [sum2, carry2] = halfAdder(sum1, c);
+  return [sum2, carry1 ^ carry2];
+}
+
+function adder(a, b) {
+  let [m, n] = [a, b];
+  let result = 0;
+  let mask = 1;
+  let carry = 0;
+  while (m > 0 || n > 0 || carry > 0) {
+    const [sum, c] = fullAdder(m & 1, n & 1, carry);
+    carry = c;
+    m >>= 1;
+    n >>= 1;
+    result |= sum ? mask : 0;
+    mask <<= 1;
+  }
+  return result;
+}
+
+console.log(adder(99, 68));
+
+/* eslint-enable */
