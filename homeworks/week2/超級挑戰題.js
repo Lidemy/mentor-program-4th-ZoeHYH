@@ -12,7 +12,7 @@ function fullAdder(a, b, c) {
   return [sum2, carry1 ^ carry2];
 }
 
-function adder(a, b) {
+function add(a, b) {
   let [m, n] = [a, b];
   let result = 0;
   let mask = 1;
@@ -28,6 +28,6 @@ function adder(a, b) {
   return result;
 }
 
-console.log(adder(99, 68));
+console.log(add(99, 68));
 
 /* eslint-enable */
