@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 const request = require('request');
 
 request.get({
@@ -9,7 +11,15 @@ request.get({
 }, (error, response, body) => {
   if (error) console.log('Fail!', error);
   else if (response.statusCode === 200) {
-    const data = JSON.parse(body);
-    data.top.map(a => console.log(`${a.viewers} ${a.game.name}`));
+    let data;
+    try {
+      data = JSON.parse(body);
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+    data.top.forEach(a => console.log(`${a.viewers} ${a.game.name}`));
   }
 });
+
+/* eslint-enable */
