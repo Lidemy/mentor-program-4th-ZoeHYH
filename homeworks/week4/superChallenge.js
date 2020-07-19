@@ -1,4 +1,33 @@
-const request = require('request');
+/* eslint-disable no-return-assign */
+
+const https = require('https');
+
+function send(url, callback, obj, form = false) {
+  const options = obj;
+  if (form) options.headers = { 'Content-Type': 'application/json' };
+  https.request(url, options, (res) => {
+    let body = '';
+    res.on('data', data => body += data);
+    res.on('end', () => callback(null, res, body));
+    res.on('err', err => callback(err, res, body));
+  }).end(form && JSON.stringify(form));
+}
+
+function request(url, callback) {
+  send(url, callback, { method: 'GET' });
+}
+
+request.delete = (url, callback) => {
+  send(url, callback, { method: 'DELETE' });
+};
+
+request.post = ({ url, form }, callback) => {
+  send(url, callback, { method: 'POST' }, form);
+};
+
+request.patch = ({ url, form }, callback) => {
+  send(url, callback, { method: 'PATCH' }, form);
+};
 
 const api = 'https://lidemy-book-store.herokuapp.com/books';
 const action = process.argv[2];
@@ -69,3 +98,5 @@ switch (action) {
     updateBook(Number(params), params2);
     break;
 }
+
+/* eslint-enable */
