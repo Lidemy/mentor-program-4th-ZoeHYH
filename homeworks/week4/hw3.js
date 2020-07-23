@@ -1,8 +1,16 @@
+/* eslint-disable consistent-return */
+
 const request = require('request');
 
 const country = process.argv[2];
 request(`https://restcountries.eu/rest/v2/name/${country}`, (error, response, body) => {
-  const data = JSON.parse(body);
+  let data;
+  try {
+    data = JSON.parse(body);
+  } catch (e) {
+    console.log(e);
+    return;
+  }
   if (data.status === 404) console.log('找不到國家資訊');
   for (let i = 0; i < data.length; i += 1) {
     console.log('============');
@@ -12,3 +20,5 @@ request(`https://restcountries.eu/rest/v2/name/${country}`, (error, response, bo
     console.log(`國碼：${data[i].callingCodes}`);
   }
 });
+
+/* eslint-enable */

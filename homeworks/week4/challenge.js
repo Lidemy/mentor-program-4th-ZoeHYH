@@ -17,8 +17,14 @@ request({
   headers: { ...passport },
 }, (err, res, body) => {
   if (err) console.log('Fail!', err);
-  else if (res.statusCode === 200) {
-    const data = JSON.parse(body);
+  else if (res.statusCode >= 200 && res.statusCode <= 300) {
+    let data;
+    try {
+      data = JSON.parse(body);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
     gameName = encodeURIComponent(data.games[0].name);
   }
 });
@@ -27,7 +33,7 @@ function callback(err, res, body) {
   if (err) console.log('Fail!', err);
   else if (res.statusCode === 200) {
     const data = JSON.parse(body);
-    data.streams.map(a => console.log(`${a.channe._id} ${a.channel.display_name}`));
+    data.streams.forEach(a => console.log(`${a.channel._id} ${a.channel.display_name}`));
   }
 }
 

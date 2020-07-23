@@ -31,12 +31,19 @@ request.patch = ({ url, form }, callback) => {
 
 const api = 'https://lidemy-book-store.herokuapp.com/books';
 const action = process.argv[2];
-const params = process.argv[3];
-const params2 = process.argv[4];
+const input = process.argv[3];
+const input2 = process.argv[4];
+
 
 function listBooks() {
   request(`${api}?_limit=20`, (err, res, body) => {
-    const data = JSON.parse(body);
+    let data;
+    try {
+      data = JSON.parse(body);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
     if (err) console.log('Fail!', err);
     else for (let i = 0; i < data.length; i += 1) console.log(`${data[i].id} ${data[i].name}`);
   });
@@ -44,7 +51,13 @@ function listBooks() {
 
 function readBook(id) {
   request(`${api}/${id}`, (err, res, body) => {
-    const data = JSON.parse(body);
+    let data;
+    try {
+      data = JSON.parse(body);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
     if (err) console.log('Fail!', err);
     else console.log(`${data.id} ${data.name}`);
   });
@@ -62,7 +75,13 @@ function createBook(name) {
     url: `${api}`,
     form: { name },
   }, (err, res, body) => {
-    const data = JSON.parse(body);
+    let data;
+    try {
+      data = JSON.parse(body);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
     if (err) console.log('Fail!', err);
     else console.log(`${data.id} ${data.name}`);
   });
@@ -86,16 +105,16 @@ switch (action) {
     listBooks();
     break;
   case 'read':
-    readBook(Number(params));
+    readBook(Number(input));
     break;
   case 'delete':
-    deleteBook(Number(params));
+    deleteBook(Number(input));
     break;
   case 'create':
-    createBook(params);
+    createBook(input);
     break;
   case 'update':
-    updateBook(Number(params), params2);
+    updateBook(Number(input), input2);
     break;
 }
 
