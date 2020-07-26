@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>餐廳官網</title>
+    <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+        body {
+            font-family: "Questrial", "Microsoft JhengHei", sans-serif;
+        }
+        .navbar{
+            background: white;
+            box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+        }
+        .wrapper{
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .navbar .wrapper{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .nav_brand{
+            color: #489846;
+            font-size: 36px;
+            line-height: 44px;
+        }
+        .nav_menu{
+            list-style: none;
+            display: flex;
+            font-size: 18px;
+        }
+        .nav_menu li{
+            margin-left: 12px;
+        }
+        .nav_menu a{
+            display: block;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: black;
+        }
+        .nav_menu a:hover, .active a{
+            color: white;
+            background-color: #ff7286;
+            transition: all 0.5s ease-in-out;
+        }
+        .banner{
+            position: relative;
+            height: 580px;
+            background: url(img/2.png) center/cover no-repeat;
+        }
+        .banner:after{
+            content: '';
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        .banner h1{
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+            top: 50%;
+            transform: translate(0, -50%);
+            z-index: 2;
+        }
+        .part{
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+        .part h2{
+            display: inline-block;
+            font-size: 36px;
+            font-weight: bold;
+            padding-left: 16px;
+            border-left: 15px solid #a3dea2;
+            margin-bottom: 40px;
+        }
+        .part p{
+            font-size: 16px;
+            line-height: 26px;
+        }
+        .part p ~ p{
+            margin-top: 10px;
+        }
+        .intro p:last-of-type{
+            margin-bottom: 80px;
+        }
+        .buttons{
+            margin: 80px 0 40px;
+        }
+        .buttons button{
+            font-family: inherit;
+            width: 300px;
+            height: 160px;
+            border: none;
+            border-radius: 10px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #3e613d;
+            outline: none;
+        }
+        .buttons button ~ button{
+            margin-left: 20px;
+        }
+        .buttons button:hover{
+            transform: scale(1.1);
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+        }
+        .btn_order{
+            background: #a8e8e1;
+        }
+        .btn_list{
+            background: #f9f9b5;
+        }
+        .menu_img{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .menu_img img{
+            width: 25%;
+        }
+        .people{
+            display: flex;
+            justify-content: center;
+        }
+        .people .card{
+            position: relative;
+            border: 1px solid #c7e5ec;
+            border-radius: 5px;
+            box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
+            padding: 0 25px 40px;
+            margin-top: 60px;
+            width: 32%;
+        }
+        .people .card ~ .card{
+            margin-left: 2%;
+        }
+        .card img{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .card h3{
+            margin-top: 55px;
+            font-style: 16px;
+        }
+        .card p{
+            margin-top: 25px;
+        }
+        .footer_top{
+            background: #e8efee;
+        }
+        .footer_top .wrapper{
+            padding-top: 30px;
+            padding-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer_top .left{
+            padding-top: 4px;
+        }
+        .footer_top .right{
+            text-align: end;
+        }
+        .footer_top li{
+            font-size: 14px;
+            line-height: 30px;
+        }
+        .footer_bottom{
+            background: #35564b;
+        }
+        .footer_bottom{
+            padding: 10px 0;
+            line-height: 26px;
+            color: white;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .navbar .wrapper{
+                flex-direction: column;
+                padding: 10px 0 0;
+            }
+            .nav_menu{
+                width: 100%;
+            }
+            .nav_menu li{
+                margin: 0;
+                flex: 1;
+            }
+            .navbar a{
+                text-align: center;
+                border-radius: 0;
+            }
+            .buttons{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 40px 0;
+            }
+            .intro button ~ button{
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            .menu_img img{
+                width: 100%;
+            }
+            .people{
+                flex-direction: column;
+                align-items: center;
+            }
+            .people .card{
+                width: 90%;
+            }
+            .people .card ~ .card{
+                margin-left: 0;
+                margin-top: 70px;
+            }
+            .footer_top .wrapper{
+                display: flex;
+                flex-direction: column-reverse;
+            }
+            .footer_top .right{
+                text-align: start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="wrapper">
+            <h2 class="nav_brand">Just A Bite!</h2>
+            <ul class="nav_menu">
+                <li class="active"><a href="#">抽個大獎</a></li>
+                <li><a href="#">我要點餐</a></li>
+                <li><a href="#">查詢訂單</a></li>
+                <li><a href="#">常見問題</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="banner">
+        <h1>咬一口廚房</h1>
+    </section>
+    <section class="part intro">
+        <div class="wrapper">
+            <h2>當輕食之風盛起</h2>
+            <p>由於現代人生活忙碌，常以外食為主，當高糖、高鹽、高油成為人們的日常，會導致慢性疾病與肥胖的機率大增。</p>
+            <p>我們定期走訪農田，選用最天然、營養的食材，以簡單的烹調方式處理，最大化忠實呈現食材原本的鮮味。</p>
+            <p>咬一口不只賣餐點，我們希望能夠讓大家愛上料理的魅力，餐館特意打造全開放式廚房，烹調透明化，也不定時舉辦美食廚房DIY，讓大家體驗不需要過多調味，就能擁有千變萬化的食物口感。</p>
+            <div class="buttons">
+                <button class="btn_order">我要點餐</button>
+                <button class="btn_list">查詢訂單</button>
+            </div>
+        </div>
+    </section>
+    <section class="part">
+        <h2>Menu 搶先看</h2>
+        <div class="menu_img">
+            <img src="img/f-001.png" alt="f-001">
+            <img src="img/f-002.png" alt="f-002">
+            <img src="img/f-003.png" alt="f-003">
+            <img src="img/f-004.png" alt="f-004">
+        </div>
+    </section>
+    <section class="part">
+        <div class="wrapper">
+            <h2>吃過都說好</h2>
+            <div class="people">
+                <div class="card">
+                    <img src="img/p-1.png" alt="國父桑">
+                    <h3>國父桑</h3>
+                    <p>我一生疲於建國，去過日本，去過歐洲，卻從未到過台北101，也從來沒有吃過這麼好吃的東西...今天在時空旅行者的幫助下我終於吃到了...此生再無遺憾 QAQ!!</p>
+                </div>
+                <div class="card">
+                    <img src="img/p-2.png" alt="可達鴨">
+                    <h3>可達鴨</h3>
+                    <p>三雙鞋等於30，兩個人加一雙鞋等於20，一雙冰淇淋加一雙冰淇淋加一個人等於13，那$#%$#%^%$^##$%等於多少...唉，大概咬一口就知道了!!!</p>
+                </div>
+                <div class="card">
+                    <img src="img/p-3.png" alt="旅かえる旅行青蛙">
+                    <h3>旅かえる旅行青蛙</h3>
+                    <p>自從呱呱呱呱呱以後，我呱呱呱呱呱，非常感謝呱呱呱呱呱，下次呱呱呱呱呱我呱呱呱呱呱，一定呱呱呱呱呱!!!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="part">
+        <div class="wrapper">
+            <h2>我們在哪裡</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.002890183707!2d121.5623502150063!3d25.03397598397251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da9c9e1f%3A0x1206bcf082fd10a6!2zMTEw5Y-w5YyX5biC5L-h576p5Y2A5L-h576p6Lev5LqU5q61N-iZnw!5e0!3m2!1szh-TW!2stw!4v1595667936752!5m2!1szh-TW!2stw" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+    </section>
+    <footer>
+        <div class="footer_top">
+            <div class="wrapper">
+                <ul class="left">
+                    <li>餐館地址: 天上地下天堂路三分之一里六段520號</li>
+                    <li>訂位專線：02-1314-5566</li>
+                    <li>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</li>
+                    <li>email：service@justabite.com.tw</li>
+                </ul>
+                <ul class="right">
+                    <h2 class="nav_brand">Just A Bite!</h2>
+                    <li>Facebook / Instagram / Youtube</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</p>
+        </div>
+    </footer>
+</body>
+</html>
