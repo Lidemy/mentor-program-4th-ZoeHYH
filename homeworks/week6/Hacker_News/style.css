@@ -77,15 +77,16 @@ main .container{
     color: #8C8C8C;
 }
 .vote{
-    display: inline-block;
     border-bottom: 10px solid #8c8c8c;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    width: 10px;
+    font-size: 0px;
+    line-height: 10px;
+    vertical-align: top;
+    margin-right: 4px;
 }
 .articles_list article{
     display: inline-block;
-    width: 95%;
     vertical-align: top;
 }
 .articles_list h3{
@@ -111,15 +112,15 @@ main .container{
     border-right: 1px solid #8c8c8c;
     margin: 0 4px;
 }
-.articles_list h3 span a:hover,
+.resource:hover,
 .articles_list p a:hover{
     text-decoration: underline;
 }
-.articles_list h3 span a::before{
+.resource::before{
     content: "(";
     font-size: 10px;
 }
-.articles_list h3 span a::after{
+.resource::after{
     content: ")";
     font-size: 10px;
 }
