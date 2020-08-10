@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新拖延運動報名表單 </title>
+    <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <form action="#" class="signup">
+            <h1>新拖延運動報名表單</h1>
+            <section class="info">
+                <ul>
+                    <li>活動日期：2020/12/10 ~ 2020/12/11</li>
+                    <li>活動地點：台北市大安區新生南路二段1號</li>
+                </ul>
+                <p>*必填</p>
+            </section>
+            <section class="required">
+                <h2>暱稱</h2>
+                <input type="text" name="name" id="name" placeholder="您的回答">
+                <p class="important">請填暱稱！</p>
+            </section>
+            <section class="required">
+                <h2>電子郵件</h2>
+                <input type="text" name="email" id="email" placeholder="您的電子郵件">
+                <p class="important">請填 E-mail！</p>
+            </section>
+            <section class="required">
+                <h2>手機號碼</h2>
+                <input type="text" name="phone" id="phone" placeholder="您的手機號碼">
+                <p class="important">請填手機號碼！</p>
+            </section>
+            <section class="required">
+                <h2>報名類型</h2>
+                <label for="imagine">
+                    <input type="radio" name="type" id="imagine">
+                    躺在床上用想像力實作
+                </label>
+                <label for="smartphone">
+                    <input type="radio" name="type" id="smartphone">
+                    趴在地上滑手機找現成的
+                </label>
+                <p class="important"p>請選擇報名類型！</p>
+            </section>
+            <section class="required">
+                <h2>怎麼知道這個活動的？</h2>
+                <input type="text" name="channel" id="channel" placeholder="您的回答">
+                <p class="important">請填知道活動的途徑！</p>
+            </section>
+            <section class="suggestion">
+                <h2>其它</h2>
+                <p>對活動的一些建議</p>
+                <input type="text" name="suggestion" id="suggestion" placeholder="您的回答">
+            </section>
+            <input type="submit" value="提交">
+            <p>請勿透過表單送出您的密碼。</p>
+        </form>
+    </main>
+    <footer>
+        <p>© 2020 © Copyright. All rights Reserved.</p>
+    </footer>
+    <script src="inputCheck.js"></script>
+</body>
+</html>
