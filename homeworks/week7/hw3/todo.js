@@ -13,7 +13,7 @@ document.querySelector('input[id = "task"]').addEventListener('keydown', (e) => 
 
 document.querySelector('.todo').addEventListener('click', (e) => {
     if (e.target.classList.contains('done')) {
-        e.target.parentNode.classList.add('finished');
+        e.target.parentNode.classList.toggle('finished');
     }
     if (e.target.classList.contains('delete')) {
         e.target.parentNode.remove();

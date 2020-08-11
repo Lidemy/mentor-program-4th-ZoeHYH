@@ -11,10 +11,11 @@ form.addEventListener('submit', (e) => {
         }
     })
     let typeInput = form.querySelectorAll('.required input[name="type"]')
+    let typeInputP = form.querySelector('label + p');
     if (typeInput[0].checked || typeInput[1].checked) {
-        typeInput[1].parentElement.nextElementSibling.classList.remove('show');
+        typeInputP.classList.remove('show');
     } else {
-        typeInput[1].parentElement.nextElementSibling.classList.add('show');
+        typeInputP.classList.add('show');
         stopSubmit = true;
     }
     if (stopSubmit) {
@@ -26,15 +27,15 @@ form.addEventListener('submit', (e) => {
         for (let i = 0; i < q.length; i += 1) {
             output[i] = q[i].innerText + ' ';
             if (i < 3) {
-                output[i] += textInputs[i].value + '\n';
+                output[i] += textInputs[i].value;
             } else if (i === 3) {
-                output[i] += radioResult + '\n';
+                output[i] += radioResult;
             } else if (i < q.length - 1) {
-                output[i] += textInputs[i - 1].value + '\n';
+                output[i] += textInputs[i - 1].value;
             } else {
                 output[i] += document.querySelector('.suggestion input').value;
             }
         }
-        alert(output.join(''), typeInput[0].checked, typeInput[1].checked);
+        alert(output.join('\n'));
     }
 });
