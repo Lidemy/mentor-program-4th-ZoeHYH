@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+body {
+    font-family: "Questrial", "Microsoft JhengHei", sans-serif;
+}
+.navbar{
+    background: white;
+    box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+}
+.wrapper{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.navbar .wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.nav_brand{
+    color: #489846;
+    font-size: 36px;
+    line-height: 44px;
+}
+.nav_menu{
+    list-style: none;
+    display: flex;
+    font-size: 18px;
+}
+.nav_menu li{
+    margin-left: 12px;
+}
+.nav_menu a{
+    display: block;
+    padding: 14px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+}
+.nav_menu a:hover, .active a{
+    color: white;
+    background-color: #ff7286;
+    transition: all 0.5s ease-in-out;
+}
+.bg {
+    position: relative;
+    height: 767px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg:after{
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.bg div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+.dn {
+    display: none;
+}
+.game {
+    background: url(img/games-bn.png) center/cover no-repeat;
+}
+.game div {
+    background: white;
+    width: 500px;
+    height: 560px;
+    border-radius: 16px;
+    padding: 40px 20px 24px;
+}
+.game h2 {
+    color: #5ec1b6;
+    font-size: 24px;
+    line-height: 22px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+.game div > ul > li {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #cdcdcd;
+}
+.game h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: bold;
+    margin-right: 22px;
+    display: inline-block;
+    vertical-align: top;
+}
+.game p, .game li ul {
+    display: inline-block;
+    width: 320px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.btn_important {
+    background: #e62a45;
+    color: white;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 18px 0;
+    width: 400px;
+    border: none;
+    border-radius: 8px;
+    margin: 0 auto;
+    outline: none;
+    z-index: 2;
+}
+.btn_important:hover {
+    cursor: pointer;
+}
+section:not(.game) h2 {
+    font-size: 36px;
+    margin-bottom: 55px;
+    z-index: 2;
+}
+.first {
+    background : url(img/bg_1.jpg) center/cover no-repeat;   
+}
+.second {
+    background : url(img/bg_2.jpg) center/cover no-repeat;  
+}
+.third {
+    background : url(img/bg_3.jpg) center/cover no-repeat;  
+}
+.none {   
+    color: white;
+}
+.none::after {
+    background: black;
+}
+.footer_top{
+    background: #e8efee;
+}
+.footer_top .wrapper{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.footer_top .left{
+    padding-top: 4px;
+}
+.footer_top .right{
+    text-align: end;
+}
+.footer_top li{
+    font-size: 14px;
+    line-height: 30px;
+}
+.footer_bottom{
+    background: #35564b;
+}
+.footer_bottom{
+    padding: 10px 0;
+    line-height: 26px;
+    color: white;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .navbar .wrapper{
+        flex-direction: column;
+        padding: 10px 0 0;
+    }
+    .nav_menu{
+        width: 100%;
+    }
+    .nav_menu li{
+        margin: 0;
+        flex: 1;
+    }
+    .navbar a{
+        text-align: center;
+        border-radius: 0;
+    }
+    .footer_top .wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .footer_top .right{
+        text-align: start;
+    }
+}
