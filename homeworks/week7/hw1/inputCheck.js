@@ -1,41 +1,46 @@
 let form = document.querySelector('.signup');
 form.addEventListener('submit', (e) => {
     let stopSubmit = false;
-    let textInputs = form.querySelectorAll('.required input[type="text"]');
-    textInputs.forEach(i => {
-        if (i.value === '') {
-            i.nextElementSibling.classList.add('show');
-            stopSubmit = true;
-        } else {
-            i.nextElementSibling.classList.remove('show');
-        }
-    })
-    let typeInput = form.querySelectorAll('.required input[name="type"]')
-    let typeInputP = form.querySelector('label + p');
-    if (typeInput[0].checked || typeInput[1].checked) {
-        typeInputP.classList.remove('show');
-    } else {
-        typeInputP.classList.add('show');
-        stopSubmit = true;
-    }
-    if (stopSubmit) {
-        e.preventDefault();
-    } else {
-        let radioResult = typeInput[0].checked ? typeInput[0].parentElement.innerText : typeInput[1].parentElement.innerText;
-        let output = [];
-        let q = document.querySelectorAll('.signup h2')
-        for (let i = 0; i < q.length; i += 1) {
-            output[i] = q[i].innerText + ' ';
-            if (i < 3) {
-                output[i] += textInputs[i].value;
-            } else if (i === 3) {
-                output[i] += radioResult;
-            } else if (i < q.length - 1) {
-                output[i] += textInputs[i - 1].value;
-            } else {
-                output[i] += document.querySelector('.suggestion input').value;
+    let output = '必填選項：\n';
+    const inputs = form.querySelectorAll('.required');
+    for (input of inputs) {
+        const text = input.querySelector('input[type=text]');
+        const radios = input.querySelectorAll('input[type=radio]');
+        let isInput = true;
+        const title = input.querySelector('h2').innerText;
+        const pAlert = input.querySelector('p.important');
+        if (text) {
+            const value = text.value;
+            output += ('|' + title + ' ' + value + '\n');
+            if (value === '') isInput = false;
+        } else if (radios.length) {
+            isInput = [...radios].some(radio => radio.checked);
+            if (isInput) {
+                output += ('|' + title + ' ' + input.querySelector('input[type=radio]:checked').parentElement.innerText + '\n');
             }
+        } else {
+            continue;
         }
-        alert(output.join('\n'));
+        if (isInput) {
+            pAlert.classList.remove('show');
+        } else {
+            pAlert.classList.add('show');
+            stopSubmit = true;
+        }
+    }
+    if (!stopSubmit) {
+        const others = form.querySelectorAll('section:not(.required) input');
+        output += '其他：\n';
+        for (other of others) {
+            const value = other.value;
+            if (value !== '') {
+                output += ('|' + other.querySelector('h2').innerText + ' ' + value + '\n');
+            } else {
+                output += '|無\n';
+            }  
+        }
+        alert(output);
+    } else {
+        e.preventDefault();
     }
 });
