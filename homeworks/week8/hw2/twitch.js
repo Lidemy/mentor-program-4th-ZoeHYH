@@ -67,7 +67,7 @@ loadPage();
 
 /* tab functions */
 function tabbing(event) {
-  document.querySelectorAll('.games button').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.games button').forEach(btn => btn.classList.remove('active'));
   event.currentTarget.classList.add('active');
   title.innerText = event.currentTarget.innerText;
   document.querySelector('.streams .container').innerHTML = '';
