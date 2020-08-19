@@ -54,28 +54,29 @@ body {
     border-left: 15px solid #a3dea2;
     margin-bottom: 40px;
 }
-.faq li{
+.faq_item{
     border-bottom: 1px solid #a6e2c0;
     padding: 20px 20px;
     display: flex;
     text-align: left;
+    cursor: pointer;
 }
-.faq span{
+.faq_item span{
     color: #70b282;
     font-size: 24px;
     line-height: 32px;
     margin-right: 16px;
 }
-.faq h3{
+.faq_item h3{
     font-size: 18px;
     line-height: 36px;
 }
-.faq p{
+.faq_a{
     display: none;
     font-size: 16px;
     line-height: 28px;
 }
-.faq .show{
+.faq_a.show{
     display: block;
 }
 .footer_top{
