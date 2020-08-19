@@ -33,7 +33,7 @@ function makePage(json) {
   defaultButton.classList.add('active');
   gameName = defaultButton.innerText;
   title.innerText = gameName;
-  loadSwitchAPI(`${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}`, makeStreams);
+  loadSwitchAPI(`${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}`, makeStreams);
 }
 
 /* make streams */
@@ -66,10 +66,10 @@ function tabbing(e) {
   gameName = e.target.innerText;
   title.innerText = gameName;
   offsetNumber = 0;
-  loadSwitchAPI(`${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}`, makeStreams);
+  loadSwitchAPI(`${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}`, makeStreams);
 }
 
 function loadMore() {
   offsetNumber += 20;
-  loadSwitchAPI(`${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}`, makeStreams);
+  loadSwitchAPI(`${api}streams/?game=${encodeURIComponent(gameName)}&limit=${streamsNumber}&offset=${offsetNumber}`, makeStreams);
 }
