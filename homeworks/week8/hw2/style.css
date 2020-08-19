@@ -1,19 +1,20 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    --primary-light: #e9e0eb;
-    --primary-middle: #a13e97;
-    --primary-dark: #280e3b;
-    --primary: #632a7e;
+    --text: #f5f5f5;
+    --bg-dark: rgb(27, 1, 1);
+    --bg-dark2: #3f0f0f;
+    --primary: #d44f8d;
+    --secondary: #fcf15e;
 }
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-size: 16px;
     line-height: 1.5;
     background: black;
-    background: linear-gradient(to top, var(--primary-dark), #100418);
+    background: linear-gradient(to bottom, var(--bg-dark), var(--bg-dark2));
 }
 h1, h2, h3, h4, h5, h6 {
-    color: var(--primary-light);
+    color: var(--text);
     line-height: 1.2;
     font-weight: bold;
 }
@@ -55,15 +56,15 @@ button {
     font-weight: bold;
     padding: 10px 8px;
     cursor: pointer;
-    color: var(--primary-light);
+    color: var(--text);
 }
 button:hover, .stream:hover {
-    background-color: var(--primary-middle);
+    background: linear-gradient(to bottom left, var(--secondary), var(--primary));
     transform: scale(1.1);
     transform: translate(1%, 1%);
 }
 .active {
-    background-color: var(--primary);
+    background: linear-gradient(to bottom left, var(--secondary), var(--primary));
 }
 .streams h2{
     text-align: center;
@@ -71,7 +72,7 @@ button:hover, .stream:hover {
     margin-bottom: 10px;
 }
 .streams p {
-    color: var(--primary-light);
+    color: var(--text);
     text-align: center;
     font-size: 16px;
     margin-bottom: 30px;

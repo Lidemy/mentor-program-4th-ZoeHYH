@@ -88,18 +88,17 @@ body {
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #cdcdcd;
+    display: flex;
 }
 .game h3 {
     font-size: 18px;
     line-height: 1.5;
     font-weight: bold;
     margin-right: 22px;
-    display: inline-block;
-    vertical-align: top;
+    width: 90px;
 }
 .game p, .game li ul {
-    display: inline-block;
-    width: 320px;
+    flex: 1;
     font-size: 16px;
     line-height: 1.5;
 }

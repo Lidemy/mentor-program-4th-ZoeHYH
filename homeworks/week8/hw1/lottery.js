@@ -1,37 +1,54 @@
-const request = new XMLHttpRequest()
+const api = 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery';
+const errMsg = '系統不穩定，請再試一次';
 const prize = {
     'FIRST': ['first', '恭喜你中頭獎了！日本東京來回雙人遊！'],
     'SECOND': ['second', '二獎！90 吋電視一台！'],
     'THIRD': ['third', '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！'],
     'NONE': ['none', '銘謝惠顧'],
 }
-let section = document.querySelector('.bg')
+const section = document.querySelector('.bg');
 let prize_class, prize_h2;
 
-request.onload = function() {
-    if (request.status >= 200 && request.status < 400 && request.responseText.indexOf('prize') !== -1) {
-        try {
-            let result = JSON.parse(request.responseText)['prize'];
-            [prize_class, prize_h2] = prize[result];
-            section.querySelector('h2 + ul').classList.add('dn');
-            section.classList.remove('game');
-            section.classList.add(prize_class);
-            section.querySelector('h2').innerText = prize_h2;
-        }catch(e) {
-            alert('系統不穩定，請再試一次');
+function getPrize(cb) {
+    const request = new XMLHttpRequest();
+    request.open('GET', api, true);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400 && request.responseText.indexOf('prize') !== -1) {
+            let data;
+            try {
+                data = JSON.parse(request.responseText);
+            }catch(e) {
+                cb('err');
+                return;
+            }
+            if (!data.prize) {
+                cb('err');
+                return;
+            }
+            cb(data);
+        } else {
+            cb('err');
         }
-    } else {
-        alert('系統不穩定，請再試一次');
     }
-}
-request.onerror = function() {
-    alert('系統不穩定，請再試一次');
+    request.onerror = function() {
+        cb('err');
+    }
+    request.send()
 }
 
 document.querySelector('.btn_important').addEventListener('click', () => {
     if (section.classList.contains('game')) {
-        request.open('GET', 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery', true)
-        request.send()
+        getPrize(result => {
+            if (result === 'err') {
+                alert(errMsg);
+            } else {
+                [prize_class, prize_h2] = prize[result.prize];
+                section.querySelector('h2 + ul').classList.add('dn');
+                section.classList.remove('game');
+                section.classList.add(prize_class);
+                section.querySelector('h2').innerText = prize_h2;
+            }
+        });
     } else {
         section.classList.remove(prize_class);
         section.classList.add('game');
