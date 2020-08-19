@@ -44,7 +44,6 @@ function loadStreams(gameName) {
 }
 
 function makeStreams(json) {
-  console.log(json.streams.length === 0)
   let streams = document.querySelector('.streams .container');
   for (let i = 0; i < json.streams.length; i += 1) {
     streams.innerHTML += `
