@@ -1,11 +1,15 @@
 *, *::before, ::after {
     box-sizing: border-box;
 }
+body {
+    font-family: Arial, Helvetica, "Microsoft Jhenghei", sans-serif;
+    font-size: 24px;
+    color: #444;
+}
 .todo {
     max-width: 720px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, Helvetica, "Microsoft Jhenghei", sans-serif;
 }
 .todo h2 {
     font-size: 36px;
@@ -13,10 +17,16 @@
     text-align: center;
 }
 .todo li {
-    font-size: 24px;
     display: flex;
     margin: 20px auto;
     flex-grow: 1;
+    align-items: center;
+}
+.todo input{
+    border: none;
+    background: #eee;
+    border-radius: 2px;
+    outline: none;
 }
 .todo input[type="text"] {
     font-size: 24px;
@@ -28,13 +38,10 @@
     flex-grow: 1;
     margin: 0 10px;
 }
-.todo button {
-    background: transparent;
-    border: 1px solid gray;
-    border-radius: 5px;
-    outline: none;
+.todo i {
+    cursor: pointer;
 }
-.finished {
+.finished p{
     color: gray;
     text-decoration: line-through;
 }
