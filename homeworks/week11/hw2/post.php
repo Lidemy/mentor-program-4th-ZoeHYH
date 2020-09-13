@@ -1,18 +1,19 @@
 <?php
     session_start();
+    require_once('./permit.php');
     require_once('./conn.php');
     require_once('./utils.php');
 
-    permit($_SESSION['username']);
+    $uri = strrchr($_SERVER['REQUEST_URI'], '/');
 
     $stmt = $conn->prepare('SELECT * FROM ZoeHYH_types ORDER BY created_at DESC');
     $result = $stmt->execute();
     if (!$result){
-        err('post', '1');
+        err('/post.php', '1');
     }
     $result = $stmt->get_result();
     if ($result->num_rows === 0) {
-        err('post', '1');
+        err('/post.php', '1');
     }
 ?>
 <!DOCTYPE html>
@@ -32,25 +33,8 @@
                 echo "<script>alert('請再試一次');</script>";
             }
         }
+        include_once('./header.php');
     ?>
-    <nav>
-        <div class="container">
-            <div>
-                <a class="logo" href="./index.php">Zoe's Blog</a>
-                <a href="./list.php">文章列表</a>
-                <a href="#">分類專區</a>
-                <a href="#">關於我</a>
-            </div>
-            <div>
-                <a href="./admin.php">管理後臺</a>
-                <a href="./do_logout.php">登出</a>
-            </div>
-        </div>
-    </nav>
-    <section class="banner bg_toblack">
-        <h1>存放技術之地-新增文章</h1>
-        <p>Welcome to my blog</p>
-    </section>
     <main class="post">
         <article>
             <form action="./do_post.php" method="post">
@@ -67,8 +51,6 @@
             </form>
         </article>
     </main>
-    <footer>
-        <p>Copyright © 2020 Zoe's Blog All Rights Reserved.</p>
-    </footer>
+    <?php include_once('./footer.php'); ?>
 </body>
 </html>

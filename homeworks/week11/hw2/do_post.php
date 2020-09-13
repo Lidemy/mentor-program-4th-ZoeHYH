@@ -4,7 +4,7 @@
     require_once('./utils.php');
 
     if (empty($_POST['title']) || empty($_POST['type_id']) || empty($_POST['content'])) {
-        err('post', '1');
+        err('/article.php?id=' . $id, '1');
     }
     $title = $_POST['title'];
     $type_id = $_POST['type_id'];
@@ -14,7 +14,7 @@
     $stmt->bind_param('sis', $title, $type_id, $content);
     $result = $stmt->execute();
     if (!$result){
-        err('post', '1');
+        err('/article.php?id=' . $id, '1');
     }
-    header('Location: ./admin.php');
+    header('Location: ./article.php?id=' . $id);
 ?>
