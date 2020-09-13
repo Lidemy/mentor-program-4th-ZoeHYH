@@ -1,6 +1,8 @@
 <?php
+    session_start();
     if (!empty($_SESSION['username'])) {
         header('Location: ./index.php');
+        exit();
     }
 ?>
 <!DOCTYPE html>
@@ -24,6 +26,7 @@
                 echo "<script>alert('密碼錯誤');</script>";
             }
         }
+        include_once('./header.php');
     ?>
     <main class="login">
         <h2>Log In</h2>

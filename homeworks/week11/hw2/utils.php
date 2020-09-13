@@ -2,7 +2,11 @@
     require_once('./conn.php');
 
     function err($page, $code) {
-        header("Location: ./" . $page .".php?errcode=" . $code);
+        if (strpos($page, '?')) {
+            header('Location: .' . $page .'&errcode=' . $code);
+            exit();
+        }
+        header('Location: .' . $page .'?errcode=' . $code);
         exit();
     }
 
@@ -25,11 +29,5 @@
             $row = $result->fetch_assoc();
         }
         return $row['name'];
-    }
-
-    function permit($username) {
-        if (empty($username)) {
-            header('Location: ./index.php');
-        }
     }
 ?>

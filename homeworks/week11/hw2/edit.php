@@ -1,36 +1,37 @@
 <?php
     session_start();
+    require_once('./permit.php');
     require_once('./conn.php');
     require_once('./utils.php');
 
-    permit($_SESSION['username']);
-
     if (empty($_POST['id'])) {
-        err('admin', '1');
+        err('/admin.php', '1');
     }
     $id = $_POST['id'];
+    $last_uri =  strrchr($_SERVER['HTTP_REFERER'], '/');
 
     $stmt = $conn->prepare('SELECT * FROM ZoeHYH_articles WHERE id=?');
     $stmt->bind_param('i', $id);
     $result = $stmt->execute();
     if (!$result){
-        err('admin', '1');
+        err($last_uri, '1');
     }
     $result = $stmt->get_result();
     if ($result->num_rows === 0) {
-        err('admin', '1');
+        err($last_uri, '1');
     }
     $article = $result->fetch_assoc();
 
     $stmt = $conn->prepare('SELECT * FROM ZoeHYH_types ORDER BY created_at DESC');
     $result = $stmt->execute();
     if (!$result){
-        err('post', '1');
+        err($last_uri, '1');
     }
     $result = $stmt->get_result();
     if ($result->num_rows === 0) {
-        err('post', '1');
+        err($last_uri, '1');
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,26 +50,8 @@
                 echo "<script>alert('請再試一次');</script>";
             }
         }
+        include_once('./header.php');
     ?>
-    <nav>
-        <div class="container">
-            <div>
-                <a class="logo" href="./index.php">Zoe's Blog</a>
-                <a href="./list.php">文章列表</a>
-                <a href="#">分類專區</a>
-                <a href="#">關於我</a>
-            </div>
-            <div>
-                <a href="./post.php">新增文章</a>
-                <a href="./admin.php">管理後臺</a>
-                <a href="./do_logout.php">登出</a>
-            </div>
-        </div>
-    </nav>
-    <section class="banner bg_toblack">
-        <h1>存放技術之地-編輯文章</h1>
-        <p>Welcome to my blog</p>
-    </section>
     <main class="post">
         <article>
             <form action="./do_update.php" method="post">
@@ -85,8 +68,6 @@
             </form>
         </article>
     </main>
-    <footer>
-        <p>Copyright © 2020 Zoe's Blog All Rights Reserved.</p>
-    </footer>
+    <?php include_once('./footer.php'); ?>
 </body>
 </html>

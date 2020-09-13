@@ -4,7 +4,7 @@
     require_once('./utils.php');
 
     if (empty($_POST['id'])) {
-        err('admin', '1');
+        err('/article.php?id=' . $id, '1');
     }
     $id = $_POST['id'];
     
@@ -12,7 +12,7 @@
     $stmt->bind_param('i', $id);
     $result = $stmt->execute();
     if (!$result){
-        err('admin', '1');
+        err(strrchr($_SERVER['HTTP_REFERER'], '/'), '1');
     }
-    header('Location: ./admin.php');
+    header('Location: .' . strrchr($_SERVER['HTTP_REFERER'], '/'));
 ?>
