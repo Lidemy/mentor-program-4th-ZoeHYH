@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week12 留言板</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        function escape(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        function appendComment(container, comment, prepend) {
+            const html = `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">${escape(comment.nickname)}</h5>
+                        <p class="card-text">${escape(comment.content)}</p>
+                    </div>
+                </div>`;
+            if (prepend) {
+                container.prepend(html);
+            } else {
+                container.append(html);
+            }
+            
+        }
+        const limit = 5;
+        let offset = 0;
+        $(document).ready(() => {
+            const commentsDOM = $('.comments');
+            $.ajax({
+                url: `./api_comment.php?site_key=zoe&limit=${limit}&offset=${offset}`,
+            }).done(function(data) {
+                if (!data.ok) {
+                    alert(data.message);
+                    return;
+                }
+                const comments= data.discussions;
+                for (let comment of comments) {
+                    appendComment(commentsDOM, comment);
+                }
+            });
+
+            $('form').submit(e => {
+                e.preventDefault();
+                const newComment = {
+                    site_key: 'zoe',
+                    nickname: $('input[name=nickname]').val(),
+                    content: $('textarea[name=content]').val(),
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: "./api_add_comment.php",
+                    data: newComment,
+                }).done(function(data) {
+                    if(!data.ok) {
+                        alert(data.message);
+                        return;
+                    }
+                    $('input[name=nickname]').val('');
+                    $('textarea[name=content]').val('');
+                    appendComment(commentsDOM, newComment, true);
+                    offset++;
+                })
+            })
+
+            $('.btn-load').click(e => {
+                e.preventDefault();
+                offset += limit;
+                $.ajax({
+                    url: `./api_comment.php?site_key=zoe&limit=${limit}&offset=${offset}`,
+                }).done(function(data) {
+                    if (!data.ok) {
+                        alert(data.message);
+                        return;
+                    }
+                    const comments= data.discussions;
+                    for (let comment of comments) {
+                        appendComment(commentsDOM, comment);
+                    }
+                    if (comments.length < 5) {
+                        $('.btn-load').remove();
+                    }
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form class="mb-3">
+            <div class="form-group">
+                <label for="nickname">暱稱</label>
+                <input class="form-control" type="text" name="nickname" id="nickname">
+            </div>
+            <div class="form-group">
+                <label for="content">留言內容</label>
+                <textarea class="form-control" name="content" id="content" rows="10"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">送出</button>
+        </form>
+        <div class="comments">
+        </div>
+        <button class="btn btn-outline-primary btn-load" type="button">載入更多</button>
+    </div>
+</body>
+</html>
