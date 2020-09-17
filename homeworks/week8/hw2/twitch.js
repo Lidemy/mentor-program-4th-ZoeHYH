@@ -21,7 +21,6 @@ function loadSwitchAPI(api, callback) {
   request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
   request.send();
 }
-
 /* make page */
 
 function makePage(json) {
