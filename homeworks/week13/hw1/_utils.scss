@@ -1,0 +1,13 @@
+.bg_black {
+    background: linear-gradient(to bottom, $bg-dark, $primary-dark);
+}
+.bg_toblack {
+    background: linear-gradient(to top, $bg-dark, $primary-dark);
+}
+.err {
+    position: absolute;
+    width: 100%;
+    font-size: $font;
+    color: $alert;
+    text-align: center;
+}
