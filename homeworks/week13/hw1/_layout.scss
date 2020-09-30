@@ -4,7 +4,7 @@
 }
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
-	font-size: $font;
+	font-size: $font-base;
     line-height: $line;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -51,7 +51,7 @@ nav {
         a {
             display: inline-block;
             color: $text-link;
-            font-size: $font;
+            font-size: $font-base;
             &.logo {
                 color: $secondary-dark;
                 font-size: $font-lg;
@@ -94,7 +94,7 @@ main {
             justify-content: space-between;
             margin-bottom: 12px;
             h2 {
-                font-size: $font;
+                font-size: $font-base;
             }
             form {
                 display: inline-block;
@@ -176,7 +176,7 @@ footer {
         }
         input {
             border: 1px solid $primary-dark;
-            font-size: $font;
+            font-size: $font-base;
             height: 40px;
             width: 100%;
             &[type=submit] {
@@ -216,7 +216,7 @@ footer {
     }
     input {
         border: 1px solid $border-light;
-        font-size: $font;
+        font-size: $font-base;
         height: 40px;
         &:not([type=submit]) {
             width: 100%;
@@ -234,7 +234,7 @@ footer {
         border: 1px solid $border-light;
         outline: none;
         background: $primary;
-        font-size: $font;
+        font-size: $font-base;
         height: 40px;
         width: 100%;
         margin-bottom: 28px;

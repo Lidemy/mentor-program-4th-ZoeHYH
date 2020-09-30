@@ -6,23 +6,21 @@ const title = document.querySelector('.streams h2');
 const api = 'https://api.twitch.tv/kraken/';
 let gameName = '';
 
+
 async function loadSwitchAPI(api, cb) {
-  try {
-    let response = await fetch(api, {
-      headers: new Headers({
-        'Client-ID': 't9k09zo1olpw20idhyf0xjnvobxx4r',
-        'Accept': 'application/vnd.twitchtv.v5+json'
-      })
-    });
+  let json = await fetch(api, {
+    headers: new Headers({
+      'Client-ID': 't9k09zo1olpw20idhyf0xjnvobxx4r',
+      'Accept': 'application/vnd.twitchtv.v5+json'
+    })
+  }).then(response => {
     if (response.status >= 200 && response.status < 400) {
-      let json = await response.json();
-      cb(json);
+      return response.json();
     } else {
-      alert(`請重新整理：status ${response.status}`);
+      throw `status ${response.status}`;
     }
-  } catch (e) {
-    alert(`請重新整理：${e}`);
-  }
+  }).catch(e => alert(`請重新整理：${e}`));
+  cb(json);
 }
 
 function loadStreams(gameName, streamsNumber, offsetNumber) {
