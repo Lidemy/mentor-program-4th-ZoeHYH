@@ -1,0 +1,7 @@
+<%- include('template/header', {subtitle: '後臺管理', page: 'admin'}); %>
+<main class="admin">
+    <% contents.forEach(content => { %>
+        <%- include('template/content', {content, page: 'admin'}); %> 
+    <% }); %>
+</main>
+<%- include('template/footer'); %>

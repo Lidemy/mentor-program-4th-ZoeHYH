@@ -1,0 +1,7 @@
+<%- include('template/header', {subtitle: '', page: 'index'}); %>
+<main>
+    <% contents.forEach(content => { %>
+        <%- include('template/content', {content, page: 'index'}); %> 
+    <% }); %>
+</main>
+<%- include('template/footer'); %>
