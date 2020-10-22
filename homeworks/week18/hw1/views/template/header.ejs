@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>餐廳</title>
+    <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="wrapper">
+            <a class="nav_brand" href="/">Just A Bite!</a>
+            <ul class="nav_menu">
+              <li <% if (page === 'lottery') { %>class="active"<% } %>><a class="btn_bullet" href="/lottery">抽個大獎</a></li>
+              <li <% if (page === 'menu') { %>class="active"<% } %>><a class="btn_bullet" href="/menu">我要點餐</a></li>
+              <li <% if (page === '#') { %>class="active"<% } %>><a class="btn_bullet" href="#">查詢訂單</a></li>
+              <li <% if (page === 'faq') { %>class="active"<% } %>><a class="btn_bullet" href="/faq">常見問題</a></li>
+            </ul>
+        </div>
+    </nav>

@@ -1,0 +1,18 @@
+<%- include('template/header.ejs', { page: 'faq' }); %> 
+<section class="part faq">
+  <div class="wrapper">
+    <h2>FAQ - 常見問題</h2>
+    <ul>
+      <% if(questions) { questions.forEach(question => { %> 
+        <li class="faq_item">
+          <span>Q<%= question.order %>:</span>
+          <article>
+            <h3><%= question.question %></h3>
+            <p class="faq_a"><%= question.answer %></p>
+          </article> 
+        </li>
+      <% }); } %>
+    </ul>
+  </div>
+</section>
+<%- include('template/footer.ejs', { page: 'faq' }); %> 
