@@ -25,6 +25,7 @@ a {
   top: 0;
   background: white;
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  z-index: 3;
 }
 .navbar .wrapper {
   align-items: center;
