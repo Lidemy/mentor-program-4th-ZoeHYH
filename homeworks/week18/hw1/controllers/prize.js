@@ -19,7 +19,7 @@ const prizeController = {
       prizes.forEach((prize) => {
         remaining -= prize.probability;
       });
-      return res.render('admin_lottery', { prizes, remaining });
+      return res.render('admin-lottery', { prizes, remaining });
     } catch (err) {
       console.log(`*${err.message}`);
       return res.render('error');
@@ -48,7 +48,7 @@ const prizeController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_lottery');
+      return res.redirect('/admin-lottery');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -79,7 +79,7 @@ const prizeController = {
         throw new Error('請再試一次');
       });
       await imgur.deleteImg(imageDeletehash);
-      return res.redirect('/admin_lottery');
+      return res.redirect('/admin-lottery');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -101,7 +101,7 @@ const prizeController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_lottery');
+      return res.redirect('/admin-lottery');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -118,7 +118,7 @@ const prizeController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_lottery');
+      return res.redirect('/admin-lottery');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();

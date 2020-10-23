@@ -34,26 +34,26 @@ function redirectBack(req, res) {
 }
 
 app.get('/lottery', prizeController.index);
-app.get('/admin_lottery', prizeController.admin);
-app.post('/add_lottery', upload.single('image'), prizeController.add, redirectBack);
-app.post('/update_image_lottery', upload.single('image'), prizeController.updateImg, redirectBack);
-app.post('/update_lottery', prizeController.update, redirectBack);
-app.post('/delete_lottery', prizeController.delete, redirectBack);
+app.get('/admin-lottery', prizeController.admin);
+app.post('/add-lottery', upload.single('image'), prizeController.add, redirectBack);
+app.post('/update-image-lottery', upload.single('image'), prizeController.updateImg, redirectBack);
+app.post('/update-lottery', prizeController.update, redirectBack);
+app.post('/delete-lottery', prizeController.delete, redirectBack);
 app.get('/getPrize', cors(), prizeController.getPrize);
 
 app.get('/', productController.home);
 app.get('/menu', productController.index);
-app.get('/admin_menu', productController.admin);
-app.post('/add_menu', upload.single('image'), productController.add, redirectBack);
-app.post('/update_image_menu', upload.single('image'), productController.updateImg, redirectBack);
-app.post('/update_menu', productController.update, redirectBack);
-app.post('/delete_menu', productController.delete, redirectBack);
+app.get('/admin-menu', productController.admin);
+app.post('/add-menu', upload.single('image'), productController.add, redirectBack);
+app.post('/update-image-menu', upload.single('image'), productController.updateImg, redirectBack);
+app.post('/update-menu', productController.update, redirectBack);
+app.post('/delete-menu', productController.delete, redirectBack);
 
 app.get('/faq', questionController.index);
-app.get('/admin_faq', questionController.admin);
-app.post('/add_faq', questionController.add, redirectBack);
-app.post('/update_faq', questionController.update, redirectBack);
-app.post('/delete_faq', questionController.delete, redirectBack);
+app.get('/admin-faq', questionController.admin);
+app.post('/add-faq', questionController.add, redirectBack);
+app.post('/update-faq', questionController.update, redirectBack);
+app.post('/delete-faq', questionController.delete, redirectBack);
 
 app.listen(port, () => {
   console.log(`Restaurant's app listening on port ${port}!`);

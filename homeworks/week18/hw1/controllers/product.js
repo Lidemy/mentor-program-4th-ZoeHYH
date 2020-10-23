@@ -23,7 +23,7 @@ const productController = {
   admin: async (req, res) => {
     try {
       const products = await Product.findAll({ order: [['updatedAt', 'DESC']] });
-      return res.render('admin_menu', { products });
+      return res.render('admin-menu', { products });
     } catch (err) {
       console.log(`*${err.message}`);
       return res.render('error');
@@ -51,7 +51,7 @@ const productController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -82,7 +82,7 @@ const productController = {
         throw new Error('請再試一次');
       });
       await imgur.deleteImg(imageDeletehash);
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -99,7 +99,7 @@ const productController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -116,7 +116,7 @@ const productController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
