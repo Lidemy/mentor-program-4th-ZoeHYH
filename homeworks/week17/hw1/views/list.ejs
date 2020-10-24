@@ -1,0 +1,7 @@
+<%- include('template/header', {subtitle: '文章列表', page: 'list'}); %>
+<main>
+    <% contents.forEach(content => { %>
+        <%- include('template/content', {content, page: 'list'}); %> 
+    <% }); %>
+</main>
+<%- include('template/footer'); %>

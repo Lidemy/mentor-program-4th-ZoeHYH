@@ -1,0 +1,12 @@
+<%- include('template/header', {subtitle: '登入', page: 'login'}); %>
+<main class="login">
+    <h2>Log In</h2>
+    <form action="/do_login" method="post">
+        <label for="username">username</label>
+        <input type="text" name="username" id="username">
+        <label for="password">password</label>
+        <input type="password" name="password" id="password">
+        <input class="bg_black" type="submit" value="sign in">
+    </form>
+</main>
+<%- include('template/footer'); %>
