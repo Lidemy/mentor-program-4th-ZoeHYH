@@ -1,3 +1,5 @@
 examples/
 conn.php
 node_modules/
+migrations/
+models/
