@@ -1,0 +1,23 @@
+<article>
+    <form class="input_content" action="/do_<%= page %>" method="post">
+        <label for="title">發表文章：</label>
+        <input type="text" name="title" id="title" placeholder="請輸入文章標題" value="<%= content.title %> ">
+        <select name="CategoryId" id="CategoryId">
+            <% if (page === 'post') { %>
+                <option value="" selected disabled hidden>請選擇文章分類</option>
+            <% } %> 
+            <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"<% if (category.id === content.id) { %> selected<% } %>>
+                    <%= category.name %>
+                </option>
+            <% }); %>
+        </select>
+        <% if (page === 'post') { %>
+            <textarea name="text" id="text" rows="20"></textarea>
+        <% } else { %> 
+            <textarea name="text" id="text" rows="20"><%= content.text %></textarea>
+            <input type="hidden" name="id" id="id" value="<%= content.id %>">
+        <% } %> 
+        <input type="submit" value="送出文章">
+    </form>
+</article>
