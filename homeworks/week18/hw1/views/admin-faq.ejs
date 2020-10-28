@@ -1,7 +1,7 @@
-<%- include('template/admin_header', { page: 'admin_faq'}); %> 
+<%- include('template/admin-header', { page: 'admin-faq'}); %> 
 <div class="container">
   <h2 class="my-3">FAQ 新增</h2>
-  <form action="/add_faq" method="POST">
+  <form action="/add-faq" method="POST">
     <div class="form-row">
       <div class="col-12 col-md-2 mb-3">
         <div class="input-group">
@@ -25,13 +25,13 @@
     <div class="row justify-content-between mb-3">
       <h2 class="col-auto">Q<%= question.order %></h2>
       <div class="col-auto">
-        <form action="/delete_menu" method="POST">
+        <form action="/delete-menu" method="POST">
           <input type="hidden" name="id" id="id" value="<%= question.id %>" />
           <button class="btn btn-outline-danger">刪除</button>
         </form>
       </div>
     </div>
-    <form action="/update_faq" method="POST">
+    <form action="/update-faq" method="POST">
       <div class="form-row">
         <div class="col-12 col-md-2 mb-3">
           <div class="input-group">
@@ -53,4 +53,4 @@
     </form>
   <% }); } %> 
 </div>
-<%- include('template/admin_footer', { page: 'admin_faq'}); %> 
+<%- include('template/admin-footer', { page: 'admin-faq'}); %> 

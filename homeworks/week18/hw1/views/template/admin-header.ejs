@@ -8,16 +8,17 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light position-static">
-      <a class="navbar-brand" href="./admin_lottery">後台管理</a>
+      <a class="navbar-brand" href="./admin-lottery">後台管理</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav"
         aria-controls="nav"aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="nav">
         <div class="navbar-nav">
-        <a class="nav-item nav-link<% if (page === 'admin_lottery') { %>  active<% } %>" href="./admin_lottery">獎項</a>
-          <a class="nav-item nav-link<% if (page === 'admin_menu') { %>  active<% } %>" href="./admin_menu">品項</a>
-          <a class="nav-item nav-link<% if (page === 'admin_faq') { %>  active<% } %>" href="./admin_faq">FAQ</a>
+        <a class="nav-item nav-link<% if (page === 'admin-lottery') { %>  active<% } %>" href="./admin-lottery">獎項</a>
+          <a class="nav-item nav-link<% if (page === 'admin-menu') { %>  active<% } %>" href="./admin-menu">品項</a>
+          <a class="nav-item nav-link<% if (page === 'admin-faq') { %>  active<% } %>" href="./admin-faq">FAQ</a>
+          <a class="nav-item nav-link" href="./logout">登出</a>
         </div>
       </div>
     </nav>

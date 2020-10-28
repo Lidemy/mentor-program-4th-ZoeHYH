@@ -23,7 +23,7 @@ const productController = {
   admin: async (req, res) => {
     try {
       const products = await Product.findAll({ order: [['updatedAt', 'DESC']] });
-      return res.render('admin_menu', { products });
+      return res.render('admin-menu', { products });
     } catch (err) {
       console.log(`*${err.message}`);
       return res.render('error');
@@ -46,12 +46,12 @@ const productController = {
         name,
         price,
         image: link,
-        imageDeletehash: deletehash,
+        imageDeleteHash: deletehash,
       }).catch((err) => {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -62,8 +62,8 @@ const productController = {
       if (!req.file) {
         throw new Error('需上傳檔案');
       }
-      const { id, name, imageDeletehash } = req.body;
-      if (!id || !name || !imageDeletehash) {
+      const { id, name, imageDeleteHash } = req.body;
+      if (!id || !name || !imageDeleteHash) {
         console.log(`*${req.body}`);
         throw new Error('缺少必要欄位');
       }
@@ -74,15 +74,15 @@ const productController = {
       await Product.update(
         {
           image: link,
-          imageDeletehash: deletehash,
+          imageDeleteHash: deletehash,
         },
         { where: { id } },
       ).catch((err) => {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      await imgur.deleteImg(imageDeletehash);
-      return res.redirect('/admin_menu');
+      await imgur.deleteImg(imageDeleteHash);
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -99,7 +99,7 @@ const productController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -107,16 +107,16 @@ const productController = {
   },
   delete: async (req, res, next) => {
     try {
-      const { id, imageDeletehash } = req.body;
-      if (!id || !imageDeletehash) {
+      const { id, imageDeleteHash } = req.body;
+      if (!id || !imageDeleteHash) {
         throw new Error('請再試一次');
       }
-      await imgur.deleteImg(imageDeletehash);
+      await imgur.deleteImg(imageDeleteHash);
       await Product.destroy({ where: { id } }).catch((err) => {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_menu');
+      return res.redirect('/admin-menu');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();

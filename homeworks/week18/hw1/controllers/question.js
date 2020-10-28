@@ -13,7 +13,7 @@ const questionController = {
   admin: async (req, res) => {
     try {
       const questions = await Question.findAll({ order: [['order', 'ASC']] });
-      return res.render('admin_faq', { questions });
+      return res.render('admin-faq', { questions });
     } catch (err) {
       console.log(`*${err.message}`);
       return res.render('error');
@@ -29,7 +29,7 @@ const questionController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_faq');
+      return res.redirect('/admin-faq');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -48,7 +48,7 @@ const questionController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_faq');
+      return res.redirect('/admin-faq');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();
@@ -64,7 +64,7 @@ const questionController = {
         console.log(`*${err}`);
         throw new Error('請再試一次');
       });
-      return res.redirect('/admin_faq');
+      return res.redirect('/admin-faq');
     } catch (err) {
       req.flash('errMessage', err.message);
       return next();

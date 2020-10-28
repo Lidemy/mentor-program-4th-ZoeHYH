@@ -1,7 +1,7 @@
-<%- include('template/admin_header', { page: 'admin_menu'}); %> 
+<%- include('template/admin-header', { page: 'admin-menu'}); %> 
 <div class="container">
   <h2 class="my-3">菜單品項新增</h2>
-  <form action="/add_menu" method="POST" enctype="multipart/form-data">
+  <form action="/add-menu" method="POST" enctype="multipart/form-data">
     <div class="form-row align-items-center">
       <div class="col-6 col-md-3 mb-3">
         <input class="form-control" type="text" name="name" id="name" placeholder="品項名稱" required />
@@ -30,7 +30,7 @@
     <div class="row justify-content-between mb-3">
       <h2 class="col-auto"><%= product.name %></h2>
       <div class="col-auto">
-        <form action="/delete_menu" method="POST">
+        <form action="/delete-menu" method="POST">
           <input type="hidden" name="id" id="id" value="<%= product.id %>" />
           <input type="hidden" name="imageDeletehash" id="imageDeletehash" value="<%= product.imageDeletehash %>" />
           <button class="btn btn-outline-danger">刪除</button>
@@ -39,7 +39,7 @@
     </div>
     <div class="row justify-content-between">
       <form class="col-12 col-md-6 d-flex flex-wrap justify-content-end mb-3"
-        action="/update_image_menu" method="POST" enctype="multipart/form-data">
+        action="/update-image-menu" method="POST" enctype="multipart/form-data">
         <div class="custom-file mb-3">
           <input type="file" class="custom-file-input" name="image" id="image" accept="image/*" required />
           <label class="custom-file-label" for="image">更新圖片</label>
@@ -52,7 +52,7 @@
         <input type="hidden" name="imageDeletehash" id="imageDeletehash" value="<%= product.imageDeletehash %>" />
         <input type="submit" class="btn btn-secondary align-self-end" value="更新" />
       </form>
-      <form class="col-md-6 col-12" action="/update_menu" method="POST">
+      <form class="col-md-6 col-12" action="/update-menu" method="POST">
         <div class="form-row align-items-center">
           <div class="col-6 mb-3">
             <input class="form-control" type="text" name="name" id="name" value="<%= product.name %>"
@@ -76,4 +76,4 @@
     </div>
     <% }); } %>
 </div>
-<%- include('template/admin_footer', { page: 'admin_menu'}); %> 
+<%- include('template/admin-footer', { page: 'admin-menu'}); %> 

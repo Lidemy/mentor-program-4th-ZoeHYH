@@ -7,6 +7,7 @@ const cors = require('cors');
 const prizeController = require('./controllers/prize');
 const productController = require('./controllers/product');
 const questionController = require('./controllers/question');
+const userController = require('./controllers/user');
 
 const app = express();
 const port = 5002;
@@ -33,27 +34,41 @@ function redirectBack(req, res) {
   res.redirect(304, 'back');
 }
 
-app.get('/lottery', prizeController.index);
-app.get('/admin_lottery', prizeController.admin);
-app.post('/add_lottery', upload.single('image'), prizeController.add, redirectBack);
-app.post('/update_image_lottery', upload.single('image'), prizeController.updateImg, redirectBack);
-app.post('/update_lottery', prizeController.update, redirectBack);
-app.post('/delete_lottery', prizeController.delete, redirectBack);
-app.get('/getPrize', cors(), prizeController.getPrize);
+function checkIsLogin(req, res, next) {
+  if (!req.session.username) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+}
 
 app.get('/', productController.home);
+
+app.get('/login', userController.index);
+app.post('/do-login', userController.login, redirectBack);
+app.get('/logout', userController.logout);
+app.get('/dev', userController.dev);
+
 app.get('/menu', productController.index);
-app.get('/admin_menu', productController.admin);
-app.post('/add_menu', upload.single('image'), productController.add, redirectBack);
-app.post('/update_image_menu', upload.single('image'), productController.updateImg, redirectBack);
-app.post('/update_menu', productController.update, redirectBack);
-app.post('/delete_menu', productController.delete, redirectBack);
+app.get('/admin-menu', checkIsLogin, productController.admin);
+app.post('/add-menu', checkIsLogin, upload.single('image'), productController.add, redirectBack);
+app.post('/update-image-menu', checkIsLogin, upload.single('image'), productController.updateImg, redirectBack);
+app.post('/update-menu', checkIsLogin, productController.update, redirectBack);
+app.post('/delete-menu', checkIsLogin, productController.delete, redirectBack);
+
+app.get('/lottery', prizeController.index);
+app.get('/admin-lottery', checkIsLogin, prizeController.admin);
+app.post('/add-lottery', checkIsLogin, upload.single('image'), prizeController.add, redirectBack);
+app.post('/update-image-lottery', checkIsLogin, upload.single('image'), prizeController.updateImg, redirectBack);
+app.post('/update-lottery', checkIsLogin, prizeController.update, redirectBack);
+app.post('/delete-lottery', checkIsLogin, prizeController.delete, redirectBack);
+app.get('/getPrize', cors(), checkIsLogin, prizeController.getPrize);
 
 app.get('/faq', questionController.index);
-app.get('/admin_faq', questionController.admin);
-app.post('/add_faq', questionController.add, redirectBack);
-app.post('/update_faq', questionController.update, redirectBack);
-app.post('/delete_faq', questionController.delete, redirectBack);
+app.get('/admin-faq', checkIsLogin, questionController.admin);
+app.post('/add-faq', checkIsLogin, questionController.add, redirectBack);
+app.post('/update-faq', checkIsLogin, questionController.update, redirectBack);
+app.post('/delete-faq', checkIsLogin, questionController.delete, redirectBack);
 
 app.listen(port, () => {
   console.log(`Restaurant's app listening on port ${port}!`);

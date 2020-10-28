@@ -1,5 +1,5 @@
 examples/
-**/conn.php
-**/node_modules/
-**/migrations/
-**/models/
+conn.php
+node_modules/
+migrations/
+models/

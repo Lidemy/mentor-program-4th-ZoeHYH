@@ -1,10 +1,10 @@
-<%- include('template/admin_header', { page: 'admin_lottery'}); %> 
+<%- include('template/admin-header', { page: 'admin-lottery'}); %> 
 <div class="container">
   <h2 class="my-3">抽獎獎項新增</h2>
   <div class="alert alert-primary" role="alert">
     剩餘機率：<%= remaining %>
   </div>
-  <form action="/add_lottery" method="POST" enctype="multipart/form-data">
+  <form action="/add-lottery" method="POST" enctype="multipart/form-data">
     <div class="form-row align-items-center">
       <div class="col-6 col-md-3 mb-3">
         <input class="form-control" type="text" name="name" id="name" placeholder="獎項名稱" required />
@@ -35,7 +35,7 @@
   <div class="row justify-content-between mb-3">
     <h2 class="col-auto"><%= prize.name %></h2>
     <div class="col-auto">
-      <form action="/delete_lottery" method="POST">
+      <form action="/delete-lottery" method="POST">
         <input type="hidden" name="id" id="id" value="<%= prize.id %>" />
         <input type="hidden" name="imageDeletehash" id="imageDeletehash" value="<%= prize.imageDeletehash %>" />
         <button class="btn btn-outline-danger">刪除</button>
@@ -44,7 +44,7 @@
   </div>
   <div class="row justify-content-between">
     <form class="col-12 col-md-6 d-flex flex-wrap justify-content-end mb-3"
-      action="/update_image_lottery" method="POST" enctype="multipart/form-data">
+      action="/update-image-lottery" method="POST" enctype="multipart/form-data">
       <div class="custom-file mb-3">
         <input type="file" class="custom-file-input" name="image" id="image" accept="image/*" required />
         <label class="custom-file-label" for="image">更新圖片</label>
@@ -57,7 +57,7 @@
       <input type="hidden" name="imageDeletehash" id="imageDeletehash" value="<%= prize.imageDeletehash %>" />
       <input type="submit" class="btn btn-secondary align-self-end" value="更新" />
     </form>
-    <form class="col-md-6 col-12" action="/update_lottery" method="POST">
+    <form class="col-md-6 col-12" action="/update-lottery" method="POST">
       <div class="form-row align-items-center">
         <div class="col-6 mb-3">
           <input class="form-control" type="text" name="name" id="name" value="<%= prize.name %>"
@@ -85,4 +85,4 @@
   </div>
   <% }); } %>
 </div>
-<%- include('template/admin_footer', { page: 'admin_lottery'}); %> 
+<%- include('template/admin-footer', { page: 'admin-lottery'}); %> 

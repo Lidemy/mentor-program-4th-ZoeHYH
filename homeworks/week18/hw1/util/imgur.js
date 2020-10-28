@@ -24,11 +24,11 @@ const imgur = {
       throw new Error('未成功上傳圖片');
     }
   },
-  deleteImg: async (imageDeletehash) => {
+  deleteImg: async (imageDeleteHash) => {
     try {
       await axios({
         method: 'delete',
-        url: `https://api.imgur.com/3/image/${imageDeletehash}`,
+        url: `https://api.imgur.com/3/image/${imageDeleteHash}`,
         headers: {
           Authorization: `Client-ID ${clientId}`,
         },
