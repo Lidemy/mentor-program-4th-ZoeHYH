@@ -1,0 +1,32 @@
+<article>
+    <div class="title">
+        <h2><%= content.title %></h2>
+        <% if (page === 'admin') { %>
+            <span><%= content.createdAt %></span>
+        <% } %> 
+        <% if (username) { %> 
+            <div>
+                <form action="/edit" method="post">
+                    <input type="hidden" name="id" id="id" value="<%= content.id %>">
+                    <input type="submit" value="編輯">
+                </form>
+                <form action="/do_delete" method="post">
+                    <input type="hidden" name="id" id="id" value="<%= content.id %>">
+                    <input type="submit" value="刪除">
+                </form>
+            </div>
+        <% } %> 
+    </div>
+    <% if (page !== 'admin') { %> 
+        <div class="info">
+            <span class="info_item"><i class="far fa-clock"></i><%= content.createdAt %></span>
+            <a class="info_item" href="#"><i class="far fa-folder"></i><%= content.Category.name %></a>
+        </div>
+        <% if (page !== 'article') { %>
+            <p class="content"><%= content.text %></p>
+            <a class="btn" href="/article/<%= content.id %>">READ MORE</a> 
+        <% } else { %>
+            <p><%= content.text %></p>
+        <% } %> 
+    <% } %>
+</article>

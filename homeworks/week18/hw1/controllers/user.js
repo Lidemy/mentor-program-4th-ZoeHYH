@@ -37,14 +37,6 @@ const userController = {
     req.session.username = null;
     res.redirect('/');
   },
-  dev: async (req, res) => {
-    try {
-      const hash = await bcrypt.hash('admin', 10);
-      await User.create({ username: 'admin', password: hash });
-    } catch (err) {
-      console.log(err.message);
-    }
-  },
 };
 
 module.exports = userController;

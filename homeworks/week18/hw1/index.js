@@ -47,7 +47,6 @@ app.get('/', productController.home);
 app.get('/login', userController.index);
 app.post('/do-login', userController.login, redirectBack);
 app.get('/logout', userController.logout);
-app.get('/dev', userController.dev);
 
 app.get('/menu', productController.index);
 app.get('/admin-menu', checkIsLogin, productController.admin);
