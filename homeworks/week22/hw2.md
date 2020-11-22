@@ -54,6 +54,8 @@ function component 則是用函式建立 component，回傳的元件會被渲染
 
 主要差在 component 本身的型態不同，因而撰寫上也有不同的寫法與效果。
 
+其中，在使用 `state` 與 `prop` 時也可以看出差別，在 class component 中我們必須使用 `this.state` 與 `this.prop`，但 `this` 值指向這個 class 的實例，因此是會改變的值，當有函式是在畫面改變後執行，該函式拿到的 `this.state` 與 `this.prop` 就不會是改變前的值，而是新的值。而 function component 由於一開始就是把 `prop` 傳進函式，所以不會被最新的 `this.prop` 值影響。
+
 ## uncontrolled 跟 controlled component 差在哪邊？要用的時候通常都是如何使用？
 
 controlled component 的唯一真相來源是 `state`，controlled component 將 `state` 作為 `prop` 接收，，當使用者與 component 互動便會觸發事件，觸發事件就會執行 `state` 的設定函式，更新 `state` 連帶更新 component。資料存在 `state` 裡，畫面與資料同步，方便程式可以立即對使用者的動作做出反應。
