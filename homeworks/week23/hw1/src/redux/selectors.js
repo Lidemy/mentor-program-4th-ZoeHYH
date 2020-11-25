@@ -24,3 +24,5 @@ export const selectCount = (state) => {
     .length;
   return { ALL: COUNT_ALL, DONE: COUNT_DONE, UNDONE: COUNT_ALL - COUNT_DONE };
 };
+
+export const selectError = (state) => state.errorState;

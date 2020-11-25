@@ -6,6 +6,7 @@ import {
   TODO_DELETE_DONE,
   TODO_SAVE,
   FILTER_SET,
+  ERROR_SET,
 } from "./actionType";
 
 export const todoAdd = (content, isDone) => ({
@@ -39,4 +40,9 @@ export const todoSave = () => ({
 export const filterSet = (filterSelected) => ({
   type: FILTER_SET,
   payload: { filterSelected },
+});
+
+export const errorSet = (errorMessage) => ({
+  type: ERROR_SET,
+  payload: { errorMessage },
 });
