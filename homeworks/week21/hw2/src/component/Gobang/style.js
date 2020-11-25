@@ -36,14 +36,13 @@ const Region = styled(Board)`
 const Block = styled(Square)`
   border: none;
   border-radius: 50%;
-  ${({ $content, turn }) =>
-    $content
-      ? STYLE.stone.white
-      : $content === false
-      ? STYLE.stone.black
-      : turn
+  ${({ $content, turn }) => {
+    if ($content) return STYLE.stone.white;
+    if ($content === false) return STYLE.stone.black;
+    return turn
       ? "&:hover{" + STYLE.stone.white + "}"
-      : "&:hover{" + STYLE.stone.black + "}"}
+      : "&:hover{" + STYLE.stone.black + "}";
+  }}
 `;
 const Header = styled.div`
   flex: 1;

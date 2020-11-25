@@ -6,7 +6,7 @@ export default function useGame(localStorageKey, create2DArray, size) {
     local ? local.record : [create2DArray("", size)]
   );
   const [step, setStep] = useState(record.length - 1);
-  const [turn, setTurn] = useState(record.length % 2 === 0 ? true : false);
+  const [turn, setTurn] = useState(record.length % 2 === 0);
   const [winner, setWinner] = useState(local ? local.winner : false);
   const [input, setInput] = useState("");
   const handleRecordUpdate = (row, col) => {

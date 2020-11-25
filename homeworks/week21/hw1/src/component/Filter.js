@@ -1,6 +1,6 @@
 import { ToggleButtonGroup, ToggleButton, Badge } from "react-bootstrap";
 import { useContext } from "react";
-import { FilterContext } from "./TodoList";
+import { FilterContext } from "../TodoList/TodoList";
 
 export default function Filter() {
   const [count, select, handleSelect, FILTER_CONTENT] = useContext(

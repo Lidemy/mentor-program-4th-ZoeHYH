@@ -4,23 +4,23 @@ import PropTypes from "prop-types";
 
 export default function InputTodo({
   handleTodoAdd,
+  handleError,
   explanation,
+  emptyMessage,
   buttonAddText,
 }) {
   const [value, setValue] = useState("");
-  const [placeholder, setPlaceholder] = useState(explanation.normal);
   const handleInput = (event) => setValue(event.target.value);
   const handleInputSubmit = () => {
-    if (value === "") return setPlaceholder(explanation.empty);
+    if (value === "") return handleError(emptyMessage);
     handleTodoAdd({ content: value, done: false });
     setValue("");
-    setPlaceholder(explanation.normal);
   };
   return (
     <InputGroup className="my-3">
       <FormControl
         value={value}
-        placeholder={placeholder}
+        placeholder={explanation}
         onChange={handleInput}
       />
       <InputGroup.Append>
@@ -34,9 +34,8 @@ export default function InputTodo({
 
 InputTodo.propTypes = {
   handleTodoAdd: PropTypes.func,
-  explanation: PropTypes.shape({
-    normal: PropTypes.string,
-    empty: PropTypes.string,
-  }),
+  handleError: PropTypes.func,
+  explanation: PropTypes.string,
+  emptyMessage: PropTypes.string,
   buttonAddText: PropTypes.string,
 };

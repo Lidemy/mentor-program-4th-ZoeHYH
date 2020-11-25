@@ -13,9 +13,9 @@ export default function useTodos(LOCAL_STORAGE_KEY) {
     return todoData;
   });
   const [select, setSelect] = useState("all");
+  const [error, setError] = useState("");
   let doneCount = todos.filter((todo) => todo.done).length;
   let count = [todos.length, doneCount, todos.length - doneCount];
-
   const handleTodoAdd = (todo) => {
     setTodos([{ id: id.current, ...todo }, ...todos]);
     id.current++;
@@ -48,10 +48,14 @@ export default function useTodos(LOCAL_STORAGE_KEY) {
   const handleSelect = (value) => {
     setSelect(value);
   };
+  const handleError = (value) => {
+    setError(value);
+  };
   return {
     todos,
     select,
     count,
+    error,
     handleTodoAdd,
     handleTodoDone,
     handleTodoEdit,
@@ -59,5 +63,6 @@ export default function useTodos(LOCAL_STORAGE_KEY) {
     handleTodoDeleteDone,
     handleTodoSave,
     handleSelect,
+    handleError,
   };
 }
