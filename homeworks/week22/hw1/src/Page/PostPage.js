@@ -1,13 +1,13 @@
-import { Input } from "../../components/Input";
-import { Page } from "../../components/Page";
-import { FormPage } from "../../components/Form";
+import { Input } from "../components/Input";
+import { Page } from "../components/Page";
+import { FormPage } from "../components/Form";
 import { useState } from "react";
-import { Button } from "../../components/Button";
-import { ErrorMessage } from "../../components/ErrorMessage";
-import { post } from "../../WebApi";
+import { Button } from "../components/Button";
+import { ErrorMessage } from "../components/ErrorMessage";
+import { post } from "../WebApi";
 import { useHistory } from "react-router-dom";
 
-export default function Postpage() {
+export default function PostPage() {
   const history = useHistory();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");

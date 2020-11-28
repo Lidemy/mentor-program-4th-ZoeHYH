@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { COLOR, DISTENCE, EFFECT, FONT } from "../constants/style";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const ArticleContainer = styled.div`
   color: ${COLOR.primary};
@@ -23,13 +25,64 @@ export const ArticleContainer = styled.div`
     font-size: ${FONT.sm};
     margin: ${DISTENCE.xs} 0;
     letter-spacing: 2px;
+    white-space: pre-line;
+    word-break: break-all;
   }
 `;
 
-export const ArticleHoverContainer = styled(ArticleContainer)`
+const ArticleHoverContainer = styled(ArticleContainer)`
   display: block;
   text-decoration: none;
   &:hover {
     box-shadow: ${EFFECT.shadowDark};
   }
 `;
+
+function ArticleContent({ post, paragraph }) {
+  return (
+    <>
+      <h3>{post.title}</h3>
+      <span>{new Date(post.createdAt).toLocaleString()}</span>
+      {paragraph && <p>{post.body}</p>}
+    </>
+  );
+}
+
+export function Article({ post, hover, $center, paragraph }) {
+  if (hover)
+    return (
+      <ArticleHoverContainer
+        as={Link}
+        to={`/article-${post.id}`}
+        $center={$center}
+      >
+        <ArticleContent post={post} paragraph={paragraph} />
+      </ArticleHoverContainer>
+    );
+  return (
+    <ArticleContainer $center={$center}>
+      <ArticleContent post={post} paragraph={paragraph} />
+    </ArticleContainer>
+  );
+}
+
+Article.propTypes = {
+  post: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    createdAt: PropTypes.number,
+    id: PropTypes.number,
+  }),
+  hover: PropTypes.bool,
+  $center: PropTypes.bool,
+  paragraph: PropTypes.bool,
+};
+ArticleContent.propTypes = {
+  post: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    createdAt: PropTypes.number,
+    id: PropTypes.number,
+  }),
+  paragraph: PropTypes.bool,
+};

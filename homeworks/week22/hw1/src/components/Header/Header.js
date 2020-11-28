@@ -8,7 +8,7 @@ import { setAuthToken } from "../../utils";
 export default function Header() {
   const location = useLocation();
   const history = useHistory();
-  const { getApi, user, setUser } = useContext(AuthContext);
+  const { isGetAPI, user, setUser } = useContext(AuthContext);
   const handleLogout = () => {
     setAuthToken("");
     setUser(null);
@@ -27,8 +27,10 @@ export default function Header() {
             <Nav to="/list" isExact={false} label="文章列表" />
             <Nav to="/about" isExact={false} label="關於" />
             {user && <Nav to="/post" isExact={true} label="發布文章" />}
-            {getApi && !user && <Nav to="/login" isExact={true} label="登入" />}
-            {getApi && !user && (
+            {isGetAPI && !user && (
+              <Nav to="/login" isExact={true} label="登入" />
+            )}
+            {isGetAPI && !user && (
               <Nav to="/register" isExact={true} label="註冊" />
             )}
             {user && (
