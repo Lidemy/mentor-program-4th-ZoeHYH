@@ -1,11 +1,11 @@
 import Header from "../Header";
-import Homepage from "../../Page/Homepage";
-import Listpage from "../../Page/Listpage";
-import Articlepage from "../../Page/Articlepage";
-import Aboutpage from "../../Page/Aboutpage";
-import Postpage from "../../Page/Postpage";
-import Loginpage from "../../Page/Loginpage";
-import Registerpage from "../../Page/Registerpage";
+import HomePage from "../../Page/HomePage";
+import ListPage from "../../Page/ListPage";
+import ArticlePage from "../../Page/ArticlePage";
+import AboutPage from "../../Page/AboutPage";
+import PostPage from "../../Page/PostPage";
+import LoginPage from "../../Page/LoginPage";
+import RegisterPage from "../../Page/RegisterPage";
 import { AuthContext } from "../../contexts";
 import {
   HashRouter as Router,
@@ -18,7 +18,7 @@ import { getUser } from "../../WebApi";
 import { getAuthToken } from "../../utils";
 
 export default function Blog() {
-  const [getApi, setGetApi] = useState(false);
+  const [isGetAPI, setIsGetAPI] = useState(false);
   const [user, setUser] = useState(null);
   useEffect(() => {
     if (getAuthToken())
@@ -27,37 +27,43 @@ export default function Blog() {
           setUser(data.data);
         }
       });
-    setGetApi(true);
+    setIsGetAPI(true);
   }, []);
   return (
-    <AuthContext.Provider value={{ getApi, setGetApi, user, setUser }}>
+    <AuthContext.Provider value={{ isGetAPI, setIsGetAPI, user, setUser }}>
       <Router>
         <Header />
         <Switch>
           <Route exact path="/">
-            <Homepage />
+            <HomePage />
           </Route>
           <Route exact path="/list">
             <Redirect to="/list/1" />
           </Route>
           <Route exact path="/list/:page">
-            <Listpage />
+            <ListPage />
           </Route>
           <Route exact path="/article-:id">
-            <Articlepage />
+            <ArticlePage />
           </Route>
           <Route exact path="/about">
-            <Aboutpage />
+            <AboutPage />
           </Route>
-          <Route exact path="/post">
-            {user ? <Postpage /> : <Redirect to="/" />}
-          </Route>
-          <Route exact path="/login">
-            {!user ? <Loginpage /> : <Redirect to="/" />}
-          </Route>
-          <Route exact path="/register">
-            {!user ? <Registerpage /> : <Redirect to="/" />}
-          </Route>
+          {user && (
+            <Route exact path="/post">
+              <PostPage />
+            </Route>
+          )}
+          {!user && (
+            <>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
+              <Route exact path="/register">
+                <RegisterPage />
+              </Route>
+            </>
+          )}
         </Switch>
       </Router>
     </AuthContext.Provider>
