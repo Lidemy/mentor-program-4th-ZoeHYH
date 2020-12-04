@@ -4,7 +4,6 @@ import ListPage from "../../page/ListPage";
 import ArticlePage from "../../page/ArticlePage";
 import AboutPage from "../../page/AboutPage";
 import PostPage from "../../page/PostPage";
-import Editpost from "../../page/EditPage";
 import LoginPage from "../../page/LoginPage";
 import RegisterPage from "../../page/RegisterPage";
 import {
@@ -17,6 +16,7 @@ import { useEffect } from "react";
 import { getUser, selectIsLogin } from "../../redux/reducers/userReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../utils";
+import EditPage from "../../page/EditPage";
 
 export default function Blog() {
   const dispatch = useDispatch();
@@ -43,26 +43,18 @@ export default function Blog() {
         <Route exact path="/about">
           <AboutPage />
         </Route>
-        {isLogin && (
-          <>
-            <Route exact path="/post">
-              <PostPage />
-            </Route>
-            <Route exact path="/edit-:id">
-              <Editpost />
-            </Route>
-          </>
-        )}
-        {!isLogin && (
-          <>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Route exact path="/register">
-              <RegisterPage />
-            </Route>
-          </>
-        )}
+        <Route exact path="/post">
+          {isLogin ? <PostPage /> : <Redirect to="/" />}
+        </Route>
+        <Route exact path="/edit-:id">
+          {isLogin ? <EditPage /> : <Redirect to="/" />}
+        </Route>
+        <Route exact path="/login">
+          {!isLogin ? <LoginPage /> : <Redirect to="/" />}
+        </Route>
+        <Route exact path="/register">
+          {!isLogin ? <RegisterPage /> : <Redirect to="/" />}
+        </Route>
       </Switch>
     </Router>
   );
