@@ -49,21 +49,15 @@ export default function Blog() {
           <Route exact path="/about">
             <AboutPage />
           </Route>
-          {user && (
-            <Route exact path="/post">
-              <PostPage />
-            </Route>
-          )}
-          {!user && (
-            <>
-              <Route exact path="/login">
-                <LoginPage />
-              </Route>
-              <Route exact path="/register">
-                <RegisterPage />
-              </Route>
-            </>
-          )}
+          <Route exact path="/post">
+            {user ? <PostPage /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/login">
+            {!user ? <LoginPage /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/register">
+            {!user ? <RegisterPage /> : <Redirect to="/" />}
+          </Route>
         </Switch>
       </Router>
     </AuthContext.Provider>

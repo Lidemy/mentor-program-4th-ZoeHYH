@@ -48,7 +48,7 @@ export const register = (nickname, username, password) => {
   }).then((response) => response.json());
 };
 
-export const post = (title, body) => {
+export const createPost = (title, body) => {
   const token = getAuthToken();
   return fetch(`${BASE_URL}/posts`, {
     method: "POST",

@@ -1,4 +1,4 @@
-import { useLocation, useHistory, Link } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { HeaderWrapper, Wrapper, Container, Brand } from "./style";
 import { Nav, ButtonLink } from "../Button";
 import { useContext } from "react";
