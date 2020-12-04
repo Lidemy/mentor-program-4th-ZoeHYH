@@ -17,22 +17,22 @@ export default function Filter() {
       value={filter}
       onChange={handleFilterOnchange}
     >
-      <ToggleButton value={FILTER_KEY.ALL} variant="outline-secondary">
-        {FILTER_CONTENT.ALL}
+      <ToggleButton value={FILTER_KEY.all} variant="outline-secondary">
+        {FILTER_CONTENT.all}
         <Badge className="ml-1" variant="light">
-          {count.ALL}
+          {count.all}
         </Badge>
       </ToggleButton>
-      <ToggleButton value={FILTER_KEY.DONE} variant="outline-secondary">
-        {FILTER_CONTENT.DONE}
+      <ToggleButton value={FILTER_KEY.done} variant="outline-secondary">
+        {FILTER_CONTENT.done}
         <Badge className="ml-1" variant="light">
-          {count.DONE}
+          {count.done}
         </Badge>
       </ToggleButton>
-      <ToggleButton value={FILTER_KEY.UNDONE} variant="outline-secondary">
-        {FILTER_CONTENT.UNDONE}
+      <ToggleButton value={FILTER_KEY.undone} variant="outline-secondary">
+        {FILTER_CONTENT.undone}
         <Badge className="ml-1" variant="light">
-          {count.UNDONE}
+          {count.undone}
         </Badge>
       </ToggleButton>
     </ToggleButtonGroup>
