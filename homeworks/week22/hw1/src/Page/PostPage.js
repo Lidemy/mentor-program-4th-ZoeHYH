@@ -4,7 +4,7 @@ import { FormPage } from "../components/Form";
 import { useState } from "react";
 import { Button } from "../components/Button";
 import { ErrorMessage } from "../components/ErrorMessage";
-import { post } from "../WebApi";
+import { createPost } from "../WebApi";
 import { useHistory } from "react-router-dom";
 
 export default function PostPage() {
@@ -13,13 +13,13 @@ export default function PostPage() {
   const [body, setBody] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const handleOnSubmit = (event) => {
-    post(title, body).then((data) => {
+    event.preventDefault();
+    createPost(title, body).then((data) => {
       if (data.ok === 0) {
         return setErrorMessage(data.message);
       }
       history.push("/");
     });
-    event.preventDefault();
   };
   return (
     <Page>
